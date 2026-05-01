@@ -1,0 +1,88 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/> 
+  <title>Student Task Manager</title> 
+  <link rel="stylesheet" href="style.css" /> 
+</head> 
+<body> 
+  <div class="container"> 
+    <!-- HEADER --> 
+    <header> 
+      <h1>Student Task Manager</h1> 
+      <p>Organize your assignments and deadlines efficiently</p> 
+    </header> 
+    <!-- STATS DASHBOARD --> 
+    <div class="stats"> 
+      <div class="stat-box"> 
+        <div class="num" id="totalCount">0</div> 
+        <div class="label">Total Tasks</div> 
+      </div> 
+      <div class="stat-box"> 
+        <div class="num" id="pendingCount">0</div> 
+        <div class="label">Pending</div> 
+      </div> 
+      <div class="stat-box"> 
+        <div class="num" id="completedCount">0</div> 
+        <div class="label">Completed</div> 
+      </div> 
+      <div class="stat-box"> 
+        <div class="num" id="overdueCount">0</div> 
+        <div class="label">Overdue</div> 
+      </div> 
+    </div> 
+    <!-- ADD TASK FORM --> 
+    <div class="card"> 
+      <h2>Add New Task</h2> 
+      <div class="form-row"> 
+        <input type="text" id="taskTitle" 
+               placeholder="Task title (e.g. Submit Math Assignment)" /> 
+        <input type="date" id="taskDue" /> 
+        <select id="taskPriority"> 
+          <option value="low">Low</option> 
+          <option value="medium" selected>Medium</option> 
+          <option value="high">High</option> 
+        </select> 
+        <button class="btn btn-primary" onclick="addTask()">Add Task</button> 
+      </div> 
+    </div> 
+    <!-- SEARCH AND FILTER --> 
+    <div class="card"> 
+      <div class="controls"> 
+        <input class="search-box" type="text" id="searchInput" 
+               placeholder="Search tasks..." oninput="renderTasks()" /> 
+        <div class="filter-btns"> 
+          <button class="filter-btn active" onclick="setFilter('all', this)">All</button> 
+          <button class="filter-btn" onclick="setFilter('pending', this)">Pending</button> 
+          <button class="filter-btn" onclick="setFilter('completed', this)">Completed</
+button> 
+        </div> 
+      </div> 
+      <div class="task-list" id="taskList"></div> 
+    </div> 
+  </div> 
+  <!-- EDIT MODAL --> 
+  <div class="modal-overlay" id="editModal"> 
+    <div class="modal"> 
+      <h2>Edit Task</h2> 
+      <div class="form-row"> 
+        <div><label>Task Title</label><input type="text" id="editTitle" /></div> 
+        <div><label>Due Date</label><input type="date" id="editDue" /></div> 
+        <div><label>Priority</label> 
+          <select id="editPriority"> 
+            <option value="low">Low</option> 
+            <option value="medium">Medium</option> 
+            <option value="high">High</option> 
+          </select> 
+        </div> 
+      </div> 
+      <div class="modal-actions"> 
+        <button class="btn btn-warning" onclick="closeModal()">Cancel</button> 
+        <button class="btn btn-primary" onclick="saveEdit()">Save Changes</button> 
+      </div> 
+    </div> 
+  </div> 
+  <script src="app.js"></script> 
+</body> 
+</html>
